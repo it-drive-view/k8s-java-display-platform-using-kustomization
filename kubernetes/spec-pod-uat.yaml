@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-display-console-uat
+  labels: 
+    app: lab-pod-uat 
+spec:
+  containers:      
+  - name: display-console-uat
+    image: itdriveview/java-display-console:latest
+    volumeMounts:
+    - name: vol-uat        
+      mountPath: "/app/config/"   
+  volumes :
+  - name: vol-uat        
+    configMap:
+      name: cm-uat        
+
+

@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: svc-display-console-uat
+spec: 
+  selector:
+    app: lab-pod-uat
+  type: NodePort 
+  ports:
+  - port : 8082
+    targetPort: 8085    
+    nodePort: 31002
+
+
+
+
+
+
+
+
+
+
+
+
+

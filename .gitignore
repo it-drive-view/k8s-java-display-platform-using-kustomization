@@ -1,0 +1,35 @@
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+
+# project without module
+/config/application.properties
+/logs
+
+# project with modules
+/*/config/application.properties
+/*/logs
+
+#Intellij
+.idea/**
+*.iml
+
+#Eclipse | project without module
+/.classpath
+/.project
+/.settings
+/bin
+/target
+
+#Eclipse | project with modules
+*/.classpath
+*/.project
+*/.settings/
+*/bin/
+*/target/
+.settings

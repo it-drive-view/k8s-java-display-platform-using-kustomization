@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-display-console-prod
+  labels:
+    app: lab-pod-prod        
+spec:
+  containers:      
+  - name: display-console-prod
+    image: itdriveview/java-display-console:latest
+    volumeMounts:
+    - name: vol-prod        
+      mountPath: "/app/config/"   
+  volumes :
+  - name: vol-prod     
+    configMap:
+      name: cm-prod
+
+

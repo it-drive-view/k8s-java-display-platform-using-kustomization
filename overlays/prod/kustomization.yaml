@@ -1,0 +1,15 @@
+bases:
+- ../../base
+
+namespace: prod 
+
+patches:
+- replicas.yaml
+
+configMapGenerator:
+- name: mykustom-map
+  env: config.properties
+
+
+
+ 
