@@ -7,9 +7,9 @@ patches:
 - replicas.yaml
 
 configMapGenerator:
-- name: mykustom-map
+- name: application.properties
   files: 
-  - mykustom-map=application.properties
+  - application.properties=application.properties
 
 
 

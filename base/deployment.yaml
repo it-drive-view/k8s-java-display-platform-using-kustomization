@@ -18,4 +18,4 @@ spec:
       volumes:  
       - name: config   
         configMap:   
-          name: mykustom-map
+          name: application.properties
