@@ -1,14 +1,15 @@
 bases:
 - ../../base
 
-namespace: uat
+namespace: uat 
 
 patches:
 - replicas.yaml
 
 configMapGenerator:
 - name: mykustom-map
-  env: config.properties
+  files: 
+  - mykustom-map=application.properties
 
 
 

@@ -12,13 +12,10 @@ spec:
         image: "itdriveview/java-display-console"
         ports:
         - containerPort: 80
-        envFrom:
-        - configMapRef:
-            name: mykustom-map
-        resources:
-          requests:
-            memory: "16Mi" 
-            cpu: "50m"    # 500milliCPUs (1/2 CPU)
-          limits:
-            memory: "128Mi"
-            cpu: "100m"
+        volumeMounts:
+        - name: config         
+          mountPath: "/app/config"
+      volumes:  
+      - name: config   
+        configMap:   
+          name: mykustom-map
