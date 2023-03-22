@@ -1,0 +1,41 @@
+--------------------------------------------------------
+pour faire tourner l'application 
+--------------------------------------------------------
+
+1- s'assurer que vous avez deux namespaces 'uat' et 'prod' dans votre cluster
+
+2- se placer dans un des répertoires de surcharge, par exemple:
+git/k8s-java-display-platform-using-kustomization/overlays/prod
+
+3- taper la commande:
+kubectl apply -k .
+
+4- je liste mes Pod pour m'assurer qu'ils sont démarrés. Je dois spécifier le namespace car les ressources sont créées dans les namespaces (prod ou aut).
+Pour le namespace prod, je tape : 
+kubectl -n prod get po 
+
+5- je prends un des Pods retournés et je regarde ses logs, pour m'assurer que l'appli spring boot a bien démarré : 
+kubectl -n prod logs kustom-mywebapp-v1-7b4fdbf748-7kfzn
+
+6A- faire tourner l'application via un port-forward
+
+
+	6- je fais un port-forward de mon Pod afin qu'il soit testable de l'extérieur du cluster : 
+	kubectl -n prod port-forward kustom-mywebapp-v1-7b4fdbf748-7kfzn 8085:8085 
+
+	7- je peux tester mon appli via un curl
+	curl -X GET http://localhost:8085/display/console
+
+6B- faire tourner l'application via un service NodePort 
+
+	3- récupérer l'adresse IP d'un des noeuds du cluster avec la commande
+	kubectl get nodes -o wide
+
+	5- dans le namespace prod, récupérer le NodePort du service qui expose le/les pods
+	kubectl -n prod get svc
+
+	6- dans un browser, taper l'adresse du [node-ip-address] + [nodePort]
+	par exemple :
+	http://192.168.49.2:32222/display/console
+
+

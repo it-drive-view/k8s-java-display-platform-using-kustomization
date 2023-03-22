@@ -5,7 +5,9 @@ metadata:
   namespace: default
 spec:
   ports:
+
   - port: 80
+    targetPort: 8085
     protocol: TCP
     name: flask
-  type: LoadBalancer
+  type: NodePort 
