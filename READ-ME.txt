@@ -22,8 +22,10 @@ kubectl -n prod logs kustom-mywebapp-v1-7b4fdbf748-7kfzn
 6A- faire tourner l'application via un port-forward
 
 	6A-1 je fais un port-forward de mon Pod afin qu'il soit testable de l'extérieur du cluster : 
-	kubectl -n prod port-forward kustom-mywebapp-v1-7b4fdbf748-7kfzn 8085:8085 
+	kubectl -n prod port-forward kustom-mywebapp-v1-7b4fdbf748-7kfzn 8085:8085
 
+        	il faut par contre se souvenir que l'application java écoute sur le port 8085.
+ 
 	6A-2 je peux tester mon appli via un curl
 	curl -X GET http://localhost:8085/display/console
 
@@ -45,7 +47,31 @@ kubectl -n prod logs kustom-mywebapp-v1-7b4fdbf748-7kfzn
 comprendre les mécanismes
 ----------------------------------------------------------------------------
 
-voir cette page drive : 
+même si ça ne correspond pas à ce projet précisément, cela explique les grands principes de la feature kustomize : 
+https://docs.google.com/document/d/13yB_gWyQcNvA21WVRhNRUmVZRQ8p5P-sJELcSGU51lY/edit#heading=h.gp30xh4i1kai
+
+sur ce projet précisément, pour comprendre le fonctionnement : 
+1- observer comment sont rédigées les specs yaml, nottament dans le répetoire /overlays/
+2- regarder comment la spec est réellement créée côté cluster par kubernetes.
+	A) par exemple, je récupère le nom du Service démarré dans le namespace prod :
+        kubectl -n prod get svc 
+        ==> kustom-mywebapp-v1
+	B) et je regarde sa spec côté cluster :
+        kubectl -n prod get svc kustom-mywebapp-v1 -o yaml
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
 
 
 
